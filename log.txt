@@ -1,0 +1,11 @@
+Example
+
+Run 001 | 2026-03-27 14:32
+Expected: 250 | Got: 247 | Missing fields: country (3 rows)
+Tried: selecting rows with .country-name class
+Problem: 3 rows use a different class .alt-country
+Plan: add fallback selector for .alt-country
+
+---
+
+Run 002 | ...
