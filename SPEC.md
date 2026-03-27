@@ -14,6 +14,13 @@ The target output is:
 
 Success means getting all 933 items plus the 3 success messages, with no missing fields.
 
+## Duration
+
+Keep running the loop until one of these conditions are met:
+
+- All 933 items and all 3 success messages are retrieved
+- 10 iterations have been completed
+
 ## Project Structure
 
 ```
