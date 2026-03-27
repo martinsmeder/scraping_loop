@@ -2,7 +2,7 @@
 
 ## Goal
 
-Scrape all data from https://www.scrapethissite.com/pages/ with 100% completeness and zero missing fields.
+Scrape https://www.scrapethissite.com/pages/ to get all 933 items + 3 success messages from the final challenges.
 
 ## Project Structure
 
@@ -19,7 +19,7 @@ Scrape all data from https://www.scrapethissite.com/pages/ with 100% completenes
 
 ## Success Condition
 
-Stop when: expected count == actual count
+Stop when: 933/933 items + 3 success messages
 Safety valve: stop after 10 iterations regardless of result, then ask if you should continue
 
 ## Initial Run (run once only)
@@ -50,8 +50,8 @@ Each entry must follow this exact format:
 
 ```
 Run NNN | YYYY-MM-DD HH:MM
-Status: success | crash
-Expected: N | Got: N | Missing fields: [field list or "none"]
+Result: [number of obtained items]/[all items]
+Status: success | fail
 Tried: [what approach was used this run]
 Problem: [what went wrong, or "none"]
 Plan: [what will be changed next run, or "complete"]
