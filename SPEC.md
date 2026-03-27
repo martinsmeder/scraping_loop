@@ -191,6 +191,7 @@ If `script.js` throws a runtime error:
 - Do not claim full success unless the exact required success messages were directly verified from the site
 - If browser automation is used, it must still rely only on the target website and repo history, not outside information
 - Follow robots.txt (see below)
+- Keep log entries and outputs from every failed or successful run, the goal is to track progress as the scraper improves
 
 ## Robots.txt
 

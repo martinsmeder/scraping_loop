@@ -1,0 +1,3 @@
+Error: EACCES: permission denied, mkdir '/output'
+    at Object.mkdirSync (node:fs:1372:26)
+    at main (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:345:8)

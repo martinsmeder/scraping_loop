@@ -1,0 +1,3 @@
+TypeError: block.match is not a function
+    at scrapeCountries (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:118:14)
+    at async main (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:334:3)

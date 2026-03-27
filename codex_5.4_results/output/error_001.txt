@@ -1,0 +1,7 @@
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:14130:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async throttledFetch (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:32:20)
+    at async fetchText (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:93:20)
+    at async scrapeCountries (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:100:20)
+    at async main (/wsl.localhost/Ubuntu/home/martin/repos/scraping_loop/script.js:325:3)

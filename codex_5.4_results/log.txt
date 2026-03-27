@@ -1,0 +1,72 @@
+Run 001 | 2026-03-27 16:17
+Items: 0/933
+Success messages: 0/3
+Status: crash
+Tried: Node built-in fetch against the observed /pages endpoints with one-request-per-second throttling and CSV output generation.
+Problem: TypeError: fetch failed
+Plan: Replace the request layer with a curl-based approach in script.js and retry the same evidence-based scraping flow.
+---
+Run 002 | 2026-03-27 16:18
+Items: 0/933
+Success messages: 0/3
+Status: crash
+Tried: Retried the same observed /pages scraping flow after replacing Node fetch with curl subprocess requests.
+Problem: TypeError: block.match is not a function
+Plan: Fix the country HTML match extraction and rerun the scraper without changing the site-derived targets.
+---
+Run 003 | 2026-03-27 16:19
+Items: 0/933
+Success messages: 0/3
+Status: crash
+Tried: Parsed the observed countries, hockey, oscars, turtles, and advanced pages with curl-backed requests and then attempted to write the CSV artifact.
+Problem: Error: EACCES: permission denied, mkdir '/output'
+Plan: Base output directory creation on the explicit OUTPUT_FILE path and rerun the same scraper to get the first non-crash output.
+---
+Run 004 | 2026-03-27 16:22
+Items: 933/933
+Success messages: 1/3
+Status: fail
+Tried: Scraped countries, paginated hockey rows, AJAX film years, turtle family detail pages, and the headers gotcha using the observed /pages HTML, JSON, frame, and live response behavior.
+Problem: Login and CSRF gotchas still returned the live message 'Needs login'; only the exact headers success message was directly observed.
+Plan: Keep the item scraping stable and use the next runs to probe the site's own login flow, cookies, redirects, and any on-site account clues without using outside information.
+---
+Run 005 | 2026-03-27 16:24
+Items: 933/933
+Success messages: 1/3
+Status: fail
+Tried: Kept the successful item scraper and added probing of /login/ to observe the site's own form fields and invalid-login cookie flash message.
+Problem: The login form only exposed email and password fields, and an invalid submission returned the live message 'No user with that email address'; the advanced login and csrf pages still returned 'Needs login'.
+Plan: Search the site's own public pages for any account clue such as an email address, then test whether the advanced endpoints accept direct form posts or redirect with any additional auth evidence.
+---
+Run 007 | 2026-03-27 16:28
+Items: 933/933
+Success messages: 1/3
+Status: fail
+Tried: Reused the working scraper and added fuller browser-navigation headers plus replay of the only observed login session cookie back to the advanced login and csrf pages.
+Problem: The advanced login and csrf pages still returned 'Needs login', and the invalid-login session cookie did not unlock any additional site behavior.
+Plan: Test one final site-local auth-flow variation through /login/?next=... redirects; if that also fails, keep the scraper stable and record that the remaining blocker is missing credentials not exposed by the observed pages.
+---
+Run 008 | 2026-03-27 16:30
+Items: 933/933
+Success messages: 1/3
+Status: fail
+Tried: Added a final auth-flow probe through /login/?next=... after confirming the advanced pages ignored fuller browser headers, direct POSTs, and the only observed session cookie.
+Problem: The /login/?next=... variant only redirected back to /login/, and no public page exposed any email or credential clue; the exact remaining blocker is still 'Needs login'.
+Plan: Keep script.js stable and rerun the same evidence-based scraper to confirm the plateau is consistent rather than transient.
+---
+Run 009 | 2026-03-27 16:32
+Items: 933/933
+Success messages: 1/3
+Status: fail
+Tried: Re-ran the stable evidence-based scraper without new external assumptions to confirm whether the advanced login and csrf blocker had changed.
+Problem: The item sections still completed, but the only directly verified advanced success message remained the headers message while login and csrf stayed gated behind 'Needs login'.
+Plan: Rerun the stable scraper again to confirm the same plateau and preserve another output.
+---
+Run 010 | 2026-03-27 16:39
+Items: 933/933
+Success messages: 1/3
+Status: fail
+Tried: Re-read the recent repo evidence, re-inspected the allowed public pages and login redirect variants, checked raw headers on the gated advanced pages, and then re-ran the stable scraper for a final attempt.
+Problem: No public page, redirect, cookie, or response header exposed usable credentials or hidden values for the advanced login and csrf challenges; both endpoints still returned the exact live message 'Needs login'.
+Plan: complete
+---

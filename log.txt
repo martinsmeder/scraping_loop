@@ -1,1 +1,1 @@
-Add logs here:
+Append every log entry to this file:
