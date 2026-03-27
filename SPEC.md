@@ -14,6 +14,12 @@ The target output is:
 
 Success means getting all 933 items plus the 3 success messages, with no missing fields.
 
+Status meanings:
+
+- `success`: the run reached the full goal
+- `fail`: the run completed without crashing, but did not reach the full goal
+- `crash`: a technical/runtime problem prevented the run from completing normally
+
 ## Duration
 
 Keep running the loop until one of these conditions are met:
@@ -109,7 +115,7 @@ The agent must not hardcode, paraphrase, rename, or substitute a challenge-speci
 3. If needed, install required dependencies using Node.js
 4. Write scraping code to `script.js`
 5. Run `script.js`
-6. On success: save output as `/output/output_001.csv`
+6. On success or fail: save output as `/output/output_001.csv`
 7. On crash: save error output as `/output/error_001.txt`
 8. Append run entry to `log.txt`
 
@@ -126,7 +132,7 @@ Notes for the initial run:
 3. Identify what changed last time, what failed, and what the plan was
 4. Update `script.js` based on that reasoning
 5. Run `script.js`
-6. On success: save new output as `/output/output_NNN.csv`
+6. On success or fail: save new output as `/output/output_NNN.csv`
 7. On crash: save error as `/output/error_NNN.txt`, treat as `0/N` rows retrieved
 8. Append run entry to `log.txt`
 
@@ -144,7 +150,7 @@ Each entry must follow this exact format:
 Run NNN | YYYY-MM-DD HH:MM
 Items: [number of obtained items]/933
 Success messages: [number of success messages]/3
-Status: success | fail
+Status: success | fail | crash
 Tried: [what approach was used this run]
 Problem: [what went wrong, or "none"]
 Plan: [what will be changed next run, or "complete"]
@@ -166,18 +172,19 @@ If `script.js` throws a runtime error:
 - log the first line of the error message under `Problem`
 - do not count a crash as a successful iteration toward the safety valve
 - attempt a fundamentally different approach next run, not a minor tweak
+- save `/output/error_NNN.txt` for that run instead of a CSV
 
 ## Rules
 
 - Maximum one request per second
 - Send an identifying user agent
 - Only read the last 3 log entries each iteration, not the full log
-- Do not rewrite `SPEC.md`
 - Do not delete any files
 - Use the simplest possible solution for each problem
 - `script.js` must be a single file
 - Output must be valid CSV with a header row
-- Save a CSV for every run, including incomplete runs
+- Save a CSV for every non-crash run, including incomplete runs with partial progress
+- On crash runs, save a TXT error file instead of a CSV
 - Script must print to stdout: expected count, actual count, and any missing fields
 - Script must exit with code 0 on success, code 1 on failure
 - Do not hardcode challenge answers unless they were directly observed from the website during this run loop
