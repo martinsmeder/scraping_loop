@@ -2,7 +2,7 @@
 
 This repo is a small environment for testing whether an AI coding agent can improve its own scraping strategy against the practice site at `https://www.scrapethissite.com/pages/`.
 
-The agent is expected to inspect the website, write and revise `script.js`, run it, log what happened, and save CSV output for each attempt. The exact rules are in [SPEC.md].
+The agent is expected to inspect the website, write and revise `script.js`, run it, log progress, and save CSV output (or txt errors) for each attempt. The exact rules are in [SPEC.md].
 
 ## Purpose
 
@@ -17,7 +17,7 @@ Clone the repo, open it in your coding environment, and let your agent of choice
 
 The agent should use [SPEC.md] as the contract for what it is allowed to do and what counts as success.
 
-Also, don't forget to delete or restrict access to codex_5.4_results to avoid giving your agent any freebies.
+Also, don't forget to delete or restrict access to /codex_5.4_results to avoid giving your agent any freebies.
 
 ## My result
 
